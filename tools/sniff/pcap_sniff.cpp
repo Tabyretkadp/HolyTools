@@ -51,7 +51,7 @@ void packet_handler(u_char *args, const struct pcap_pkthdr *header,
   }
 }
 
-int main() {
+int pcap_sniff() {
   char errbuf[PCAP_ERRBUF_SIZE];
   char *device = pcap_lookupdev(errbuf);
 
