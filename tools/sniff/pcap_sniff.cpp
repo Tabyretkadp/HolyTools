@@ -7,54 +7,64 @@
 #include <pcap.h>
 #include <pcap/pcap.h>
 
-void print_packet(const struct pcap_pkthdr *h, const u_char *packet) {
-  for (int i = 0; i < h->len; i++) {
-    printf("%02x ", packet[i]);
+void dump(const struct pcap_pkthdr *header, const u_char *packet) {
+  if (packet == nullptr) {
+    printf("<not data>\n");
+    return;
+  }
+
+  int data_offset = 14 + 20 + 20;
+  const u_char *data = packet + data_offset;
+  int data_len = header->len - data_offset;
+
+  for (int i = 0; i < data_len; i++) {
+    printf("%02x ", data[i]);
     if ((i + 1) % 16 == 0) {
       printf("\n");
     }
   }
-  printf("\n\n");
+  if (header->len % 16 != 0) {
+    printf("\n");
+  }
+  printf("\n");
 }
 
 void packet_handler(u_char *args, const struct pcap_pkthdr *header,
                     const u_char *packet) {
   struct iphdr *ip = (struct iphdr *)(packet + 14);
-
-  if (ip->protocol == IPPROTO_TCP) {
-    printf("- src:\t%s\n", inet_ntoa(*(struct in_addr *)&ip->saddr));
-    printf("- dst:\t%s\n\n", inet_ntoa(*(struct in_addr *)&ip->daddr));
-    printf("- MAC_dst:\t");
-    for (int i = 0; i < 6; i++) {
-      printf("%02x", packet[i]);
-      if (i != 5) {
-        printf(":");
-      }
+  printf("packet %d bite\n", header->len);
+  printf(" - src:\t%s\n", inet_ntoa(*(struct in_addr *)&ip->saddr));
+  printf(" - dst:\t%s\n\n", inet_ntoa(*(struct in_addr *)&ip->daddr));
+  printf(" - MAC_src:\t");
+  for (int i = 6; i < 12; i++) {
+    printf("%02x", packet[i]);
+    if (i != 11) {
+      printf(":");
     }
-    printf("\n");
-
-    printf("- MAC_src:\t");
-    for (int i = 6; i < 12; i++) {
-      printf("%02x", packet[i]);
-      if (i != 11) {
-        printf(":");
-      }
-    }
-    printf("\n");
-
-    struct tcphdr *tcp = (struct tcphdr *)(packet + 14 + 20);
-
-    printf("- port: %d -> %d\n\n", htons(tcp->th_sport), htons(tcp->th_dport));
-
-    printf("== PACKET %d ===\n", header->len);
-    print_packet(header, packet);
   }
+  printf("\n");
+
+  printf(" - MAC_dst:\t");
+  for (int i = 0; i < 6; i++) {
+    printf("%02x", packet[i]);
+    if (i != 5) {
+      printf(":");
+    }
+  }
+  printf("\n\n");
+
+  struct tcphdr *tcp = (struct tcphdr *)(packet + 14 + ip->ihl * 4);
+
+  printf(" - port:\t%u -> %u\n", ntohs(tcp->th_sport), ntohs(tcp->th_dport));
+  printf(" - seq #:\t%u\n", htons(tcp->seq));
+  printf(" - ask #:\t%u\n\n", htons(tcp->ack));
+
+  dump(header, packet);
 }
 
-int pcap_sniff() {
+int main() {
   char errbuf[PCAP_ERRBUF_SIZE];
   char *device = pcap_lookupdev(errbuf);
-
   if (device == nullptr) {
     std::cerr << "[!!] pcap_lookupdev: " << errbuf << std::endl;
     return 1;
@@ -66,7 +76,7 @@ int pcap_sniff() {
     return 1;
   }
 
-  pcap_loop(handle, 3, packet_handler, nullptr);
+  pcap_loop(handle, 0, packet_handler, nullptr);
 
   pcap_close(handle);
 
