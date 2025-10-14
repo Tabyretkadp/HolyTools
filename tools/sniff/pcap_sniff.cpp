@@ -62,7 +62,7 @@ void packet_handler(u_char *args, const struct pcap_pkthdr *header,
   dump(header, packet);
 }
 
-int main() {
+int sniff() {
   char errbuf[PCAP_ERRBUF_SIZE];
   char *device = pcap_lookupdev(errbuf);
   if (device == nullptr) {

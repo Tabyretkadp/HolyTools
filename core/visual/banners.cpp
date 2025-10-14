@@ -52,7 +52,7 @@ void main_banner() {
                 "  .7:           \n",
                 "38;5;196");
   print_colored(
-      "  [ 1 ] - brutforce                                             ",
+      "  [ 1 ] - pcap_sniff                                             ",
       "38;5;255");
   print_colored(".~.\n", "38;5;196");
   print_colored(
