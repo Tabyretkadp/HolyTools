@@ -1,5 +1,4 @@
-#include "../include/banners.hpp"
-#include "../include/pcap_sniff.hpp"
+#include "../include/full_include.hpp"
 
 #include <cstdlib>
 #include <iostream>
@@ -22,8 +21,10 @@ void menu() {
 
   switch (menu_item) {
   case 1: {
+<<<<<<< HEAD
+=======
     clear_console();
-    brutforce_banner();
+>>>>>>> 810cdf9 (FIX: tree)
     sniff();
     break;
   }

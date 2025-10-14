@@ -7,6 +7,8 @@
 #include <pcap.h>
 #include <pcap/pcap.h>
 
+#include "../../include/full_include.hpp"
+
 void dump(const struct pcap_pkthdr *header, const u_char *packet) {
   if (packet == nullptr) {
     printf("<not data>\n");

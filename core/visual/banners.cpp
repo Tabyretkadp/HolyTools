@@ -1,4 +1,4 @@
-#include "../../include/banners.hpp"
+#include "../../include/full_include.hpp"
 
 #include <iostream>
 #include <string>
@@ -60,21 +60,4 @@ void main_banner() {
       "38;5;255");
   print_colored(".\n", "38;5;196");
   std::cout << "\n";
-}
-
-void brutforce_banner() {
-  print_colored(R"(
-               @@@  @@@ @@@  @@@@@@@ @@@@@@@ @@@ @@@@@@@@@@ 
-               @@!  @@@ @@! !@@        @!!   @@! @@! @@! @@!
-               @!@  !@! !!@ !@!        @!!   !!@ @!! !!@ @!@
-                !: .:!  !!: :!!        !!:   !!: !!:     !!:
-                  ::    :    :: :: :    :    :    :      :  
-  )",
-                "38;5;196");
-  print_colored(
-      R"(                                                                                                                  
- -----------------------------------------------------------------------------
-
-  )",
-      "38;5;255");
 }
