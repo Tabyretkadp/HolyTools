@@ -1,1 +1,58 @@
+<div align="center">
 
+# 🩸Holy Tools v1.0🩸
+*Research / Educational toolkit for network experiments*
+
+</div>
+
+> **Important!** This repository is provided strictly for educational purposes — to study networking protocols and security. **It is expressly forbidden** to use the contents of this project for malicious purposes or against networks/systems for which you do not have explicit permission from the owner.
+
+---
+
+## Project Purpose
+
+**Holy Tools** is a demonstrational set of tools assembled for learning and researching network behavior and defensive mechanisms. The project is intended only for:
+
+- understanding how network protocols work;  
+- creating isolated labs for testing and debugging;  
+- studying detection methods and defenses against network attacks (for research/educational purposes).
+
+By downloading this repository you confirm that you will use it only in authorized, isolated environments (virtual machines, test networks, lab environments).
+
+---
+
+> [!WARNING]
+> **Warning:** Everything in this repository is created solely for study. Using the project’s tools against other systems without permission is illegal and unethical. The author and maintainers are not responsible for misuse.
+
+---
+
+## Screenshots
+
+<img src="screen/TEMP1.png" alt="Screen" width="500"/>
+<img src="screen/TEMP2.png" alt="Screen" width="500"/>
+
+---
+
+## Features (overview)
+
+> Descriptions are high-level — no operational instructions provided.
+
+- **pcap_sniff** — a demonstration of capturing and analyzing network traffic (used to study packet formats and structure).  
+- **syn_flood** — a demonstrational implementation of a technique referenced in DoS analysis (intended only for test networks).
+- **Soon again...**
+
+---
+
+## Safety & Usage Recommendations
+
+1. **Use only in isolated labs.** We recommend running these tools in virtual machines and/or on physically separate networks that are not connected to production infrastructure.  
+2. **Obtain permission.** Before testing any system, ensure you have written authorization from the system owner.  
+3. **Do no harm.** Do not attempt to use these tools against public services, work networks, or other people's devices.  
+4. **Use for defense and research.** Use the materials to learn how to detect and mitigate threats, not to exploit them.
+
+---
+
+## Dependencies
+
+> Specific installation steps are intentionally omitted in this release.  
+> If desired, a safe section on "How to set up a learning lab" (VMs, containers, isolated networks) can be added without any instructions for running attacks.
