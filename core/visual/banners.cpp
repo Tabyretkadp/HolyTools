@@ -59,5 +59,9 @@ void main_banner() {
       "  [ 2 ] - syn_flood                                              ",
       "38;5;255");
   print_colored(".\n", "38;5;196");
+  print_colored(
+      "  [ 3 ] - arp_sniff                                              ",
+      "38;5;255");
+  print_colored(".\n", "38;5;196");
   std::cout << "\n";
 }

@@ -29,7 +29,7 @@ void menu() {
     syn_flood();
     break;
   case 3:
-    std::cout << "not yet and no ideas :(" << std::endl;
+    arp_sniffing();
     break;
   }
 }
