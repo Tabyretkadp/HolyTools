@@ -28,8 +28,9 @@ By downloading this repository you confirm that you will use it only in authoriz
 
 ## Screenshots
 
-<img src="screen/TEMP1.png" alt="Screen" width="500"/>
-<img src="screen/TEMP2.png" alt="Screen" width="500"/>
+<img src="screen/Screenshot_20251019_135158.png" alt="Screen" width="500"/>
+<img src="screen/Screenshot_20251019_135316.png" alt="Screen" width="500"/>
+<img src="screen/Screenshot_20251019_135551.png" alt="Screen" width="500"/>
 
 ---
 
