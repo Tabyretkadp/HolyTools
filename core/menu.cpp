@@ -21,15 +21,12 @@ void menu() {
 
   switch (menu_item) {
   case 1: {
-<<<<<<< HEAD
-=======
     clear_console();
->>>>>>> 810cdf9 (FIX: tree)
-    sniff();
+    pcap_sniff();
     break;
   }
   case 2:
-    std::cout << "not yet :(" << std::endl;
+    syn_flood();
     break;
   case 3:
     std::cout << "not yet and no ideas :(" << std::endl;
