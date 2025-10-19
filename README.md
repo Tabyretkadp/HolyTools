@@ -55,5 +55,14 @@ By downloading this repository you confirm that you will use it only in authoriz
 
 ## Dependencies
 
-> Specific installation steps are intentionally omitted in this release.  
-> If desired, a safe section on "How to set up a learning lab" (VMs, containers, isolated networks) can be added without any instructions for running attacks.
+> ArchLinux:
+
+```bash
+sudo pacman -S libpcap libnet
+```
+```bash
+git clone https://github.com/Tabyretkadp/HolyTools.git
+cd HolyTools
+make
+```
+
