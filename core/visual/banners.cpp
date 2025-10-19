@@ -27,15 +27,15 @@ void main_banner() {
       "                                                                ",
       "38;5;255");
   print_colored("^5^           \n", "38;5;196");
-  print_colored("    ты не бог, но ты носишь свет                        ",
+  print_colored("    You are not God, but you bring light                ",
                 "38;5;255");
   print_colored("..::::^~?P?~^^^::...", "38;5;196");
   print_colored("   \n", "38;5;255");
-  print_colored("    твои инструменты — это яд,                           ",
+  print_colored("    Your tools are poison,                              ",
                 "38;5;255");
   print_colored(".::^~~!7YG57!~~^:..\n", "38;5;196");
   print_colored(
-      "    ты лечишь ложь — болью                                      ",
+      "    You heal lies with pain                                     ",
       "38;5;255");
   print_colored("^P~           \n", "38;5;196");
   print_colored(
