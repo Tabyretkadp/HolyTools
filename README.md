@@ -40,6 +40,7 @@ By downloading this repository you confirm that you will use it only in authoriz
 
 - **pcap_sniff** — a demonstration of capturing and analyzing network traffic (used to study packet formats and structure).  
 - **syn_flood** — a demonstrational implementation of a technique referenced in DoS analysis (intended only for test networks).
+- **arp_spoffing** — 100% WiFi connection disruption (intended only for test networks).
 - **Soon again...**
 
 ---
