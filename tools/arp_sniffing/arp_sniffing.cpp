@@ -47,7 +47,7 @@ int arp_sniffing() {
 
   struct libnet_ether_addr *eth_addr;
   uint8_t my_mac[6];
-  uint8_t victim_mac[6] = {0xc4, 0x06, 0x83, 0x9c, 0xf7, 0x04};
+  uint8_t victim_mac[6] = {0x1a, 0x1b, 0x1c, 0x1d, 0xbe, 0x1a};
 
   eth_addr = libnet_get_hwaddr(l);
   memcpy(my_mac, eth_addr->ether_addr_octet, 6);
@@ -87,7 +87,7 @@ int arp_sniffing() {
       fprintf(stderr, "Error writing packet: %s\n", libnet_geterror(l));
     }
 
-    usleep(5000);
+    // usleep(5000);
   }
 
   libnet_destroy(l);

