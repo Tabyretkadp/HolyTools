@@ -1,6 +1,5 @@
 #include "../../include/full_include.hpp"
 
-// ICMP syn_flood
 // Slowloris
 
 #include <iostream>
@@ -55,15 +54,20 @@ void main_banner() {
                 "  .7:           \n",
                 "38;5;196");
   print_colored(
-      "  [ 1 ] - pcap_sniff                                            ",
+      "  [ 1 ] - pcap_sniff [BETA]                                     ",
       "38;5;255");
   print_colored(".~.\n", "38;5;196");
   print_colored(
-      "  [ 2 ] - syn_flood                                              ",
+      "  [ 2 ] - syn_flood [DDoS]                                       ",
       "38;5;255");
   print_colored(".\n", "38;5;196");
   print_colored(
-      "  [ 3 ] - arp_sniff                                              ",
+      "  [ 3 ] - arp_sniff [DoS]                                        ",
       "38;5;255");
+  print_colored("\n", "38;5;196");
+  print_colored("  [ 4 ] - icmp_flood [DoS]                               "
+                "          ",
+                "38;5;255");
+  print_colored("\n", "38;5;196");
   std::cout << "\n\n";
 }

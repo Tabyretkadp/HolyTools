@@ -6,7 +6,8 @@ SRC = main.cpp \
       core/visual/banners.cpp \
       tools/pcap_sniff/pcap_sniff.cpp \
       tools/syn_flood/syn_flood.cpp \
-      tools/arp_sniffing/arp_sniffing.cpp
+      tools/arp_sniffing/arp_sniffing.cpp \
+      tools/icmp_flood/icmp_flood.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

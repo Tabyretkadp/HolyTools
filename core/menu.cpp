@@ -31,5 +31,8 @@ void menu() {
   case 3:
     arp_sniffing();
     break;
+  case 4:
+    icmp_flood();
+    break;
   }
 }
